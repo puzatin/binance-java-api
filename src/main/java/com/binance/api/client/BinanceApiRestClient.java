@@ -17,13 +17,7 @@ import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.Asset;
-import com.binance.api.client.domain.market.AggTrade;
-import com.binance.api.client.domain.market.BookTicker;
-import com.binance.api.client.domain.market.Candlestick;
-import com.binance.api.client.domain.market.CandlestickInterval;
-import com.binance.api.client.domain.market.OrderBook;
-import com.binance.api.client.domain.market.TickerPrice;
-import com.binance.api.client.domain.market.TickerStatistics;
+import com.binance.api.client.domain.market.*;
 
 import java.util.List;
 
@@ -137,7 +131,9 @@ public interface BinanceApiRestClient {
    */
   List<TickerStatistics> getAll24HrPriceStatistics();
 
-  /**
+  TickerAveragePrice getAvgPrice(String symbol);
+
+    /**
    * Get Latest price for all symbols.
    */
   List<TickerPrice> getAllPrices();

@@ -33,6 +33,7 @@ public class GeneralEndpointsExample {
 
     // Obtain symbol information
     SymbolInfo symbolInfo = exchangeInfo.getSymbolInfo("ETHBTC");
+
     System.out.println(symbolInfo.getStatus());
 
     SymbolFilter priceFilter = symbolInfo.getSymbolFilter(FilterType.PRICE_FILTER);

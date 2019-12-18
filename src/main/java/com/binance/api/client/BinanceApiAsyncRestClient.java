@@ -19,13 +19,7 @@ import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.ServerTime;
-import com.binance.api.client.domain.market.AggTrade;
-import com.binance.api.client.domain.market.BookTicker;
-import com.binance.api.client.domain.market.Candlestick;
-import com.binance.api.client.domain.market.CandlestickInterval;
-import com.binance.api.client.domain.market.OrderBook;
-import com.binance.api.client.domain.market.TickerPrice;
-import com.binance.api.client.domain.market.TickerStatistics;
+import com.binance.api.client.domain.market.*;
 
 import java.util.List;
 
@@ -158,6 +152,8 @@ public interface BinanceApiAsyncRestClient {
    * @param callback the callback that handles the response
    */
    void getPrice(String symbol , BinanceApiCallback<TickerPrice> callback);
+
+  void getAveragePrice(String symbol , BinanceApiCallback<TickerAveragePrice> callback);
 
   /**
    * Get best price/qty on the order book for all symbols (asynchronous).

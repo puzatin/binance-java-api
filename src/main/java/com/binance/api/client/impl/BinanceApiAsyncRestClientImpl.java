@@ -22,13 +22,7 @@ import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.ServerTime;
-import com.binance.api.client.domain.market.AggTrade;
-import com.binance.api.client.domain.market.BookTicker;
-import com.binance.api.client.domain.market.Candlestick;
-import com.binance.api.client.domain.market.CandlestickInterval;
-import com.binance.api.client.domain.market.OrderBook;
-import com.binance.api.client.domain.market.TickerPrice;
-import com.binance.api.client.domain.market.TickerStatistics;
+import com.binance.api.client.domain.market.*;
 
 import java.util.List;
 
@@ -123,6 +117,11 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   @Override
   public void getPrice(String symbol , BinanceApiCallback<TickerPrice> callback) {
     binanceApiService.getLatestPrice(symbol).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+
+  @Override
+  public void getAveragePrice(String symbol, BinanceApiCallback<TickerAveragePrice> callback) {
+    binanceApiService.getAveragePrice(symbol).enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
 
   @Override

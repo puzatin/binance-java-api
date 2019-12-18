@@ -19,12 +19,7 @@ import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.ServerTime;
-import com.binance.api.client.domain.market.AggTrade;
-import com.binance.api.client.domain.market.BookTicker;
-import com.binance.api.client.domain.market.Candlestick;
-import com.binance.api.client.domain.market.OrderBook;
-import com.binance.api.client.domain.market.TickerPrice;
-import com.binance.api.client.domain.market.TickerStatistics;
+import com.binance.api.client.domain.market.*;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -59,6 +54,9 @@ public interface BinanceApiService {
 
   @GET("/api/v1/depth")
   Call<OrderBook> getOrderBook(@Query("symbol") String symbol, @Query("limit") Integer limit);
+
+  @GET("/api/v3/avgPrice")
+  Call<TickerAveragePrice> getAveragePrice(@Query("symbol") String symbol);
 
   @GET("/api/v1/trades")
   Call<List<TradeHistoryItem>> getTrades(@Query("symbol") String symbol, @Query("limit") Integer limit);
