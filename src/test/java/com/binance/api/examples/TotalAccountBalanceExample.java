@@ -38,20 +38,19 @@ public class TotalAccountBalanceExample {
         for (AssetBalance balance : account.getBalances()) {
             double free = Double.parseDouble(balance.getFree());
             double locked = Double.parseDouble(balance.getLocked());
-            String ticker = balance.getAsset() + Util.BTC_TICKER;
-            String tickerReverse = Util.BTC_TICKER + balance.getAsset();
-            if (free + locked != 0) {
+            if (free + locked != 0 && !balance.getAsset().equals(Util.BTC_TICKER)) {
                 if (Util.isFiatCurrency(balance.getAsset())) {
-                    double price = Double.parseDouble(client.getPrice(tickerReverse).getPrice());
+                    String tickerRev = Util.BTC_TICKER + balance.getAsset();
+                    double price = Double.parseDouble(client.getPrice(tickerRev).getPrice());
                     double amount = (free + locked) / price;
                     totalBalance += amount;
                 } else {
+                    String ticker = balance.getAsset() + Util.BTC_TICKER;
                     double price = Double.parseDouble(client.getPrice(ticker).getPrice());
                     double amount = price * (free + locked);
                     totalBalance += amount;
                 }
-
-            }
+            } else totalBalance += free + locked;
         }
 
         return totalBalance;
